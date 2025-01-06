@@ -1,0 +1,809 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+        <meta name="naver-site-verification" content="bdbbbfda527f02d6d3d7d71b4bd39a8304951e51">
+        <meta name="description" content="중고차 B to B 사이트 1위인 카매니저의 웹버젼, 3만 5천명 딜러의 20만대 실시간 실매물, 딜러전용 전국매물공유프로그램">
+
+    <title>중고차 카매니저 - 로그인</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <!-- css include -->
+    <link href="/include/css/base/jquery-ui.css" rel="stylesheet">
+    <link href="/include/css/base/jquery-ui.theme.css" rel="stylesheet">
+    <link href="/include/css/base/PagedList.css" rel="stylesheet">
+    <link href="/include/css/base/jquery.flipcountdown.css" rel="stylesheet">
+
+    <link href="/include/css/base.css?version=20250106195742" rel="stylesheet">
+    <link href="/include/css/common.css?version=20250106195742" rel="stylesheet">
+    <link href="/include/css/default.css?version=20250106195742" rel="stylesheet">
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZG0WEW99GG&amp;cx=c&amp;_slc=1"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/include/script/jdetects.js?version=20180205144611"></script>
+    
+
+    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/include/css/ie/ie8.css" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/include/css/ie/ie7.css" /><![endif]-->
+    <!--[if IE 6]><link rel="stylesheet" type="text/css" href="/include/css/ie/ie6.css" /><![endif]-->
+    <!-- script include -->
+    <script src="/include/base/jquery-1.11.2.min.js"></script>
+
+    <script src="/include/base/jquery-ui.js"></script>
+
+    <!--[if lt IE 7]>
+        <script src="/include/script/JSON/json2.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <script src="/include/script/JSON/json2.js"></script>
+    <![endif]-->
+
+
+    <script src="/include/base/jquery.number.js"></script>
+    <script src="/include/base/jquery.cookie.js"></script>
+    <script src="/include/base/jquery.corner.js"></script>
+    <script src="/include/base/jquery.fs.scroller.js"></script>
+    <script src="/include/base/jquery.selectbox-0.2.js"></script>
+    <script src="/include/base/jquery.flipcountdown.js"></script>
+
+    <script src="/include/script/commonfc.js?version=20250106195742"></script>
+    <script src="/include/script/common.js?version=20250106195742"></script>
+    <script src="/include/script/sCommonCar.js?version=20250106195742"></script>
+    <script src="/include/script/default.js?version=20250106195742"></script>
+    <script src="/include/script/footer.js?version=20250106195742"></script>
+
+    <script src="/include/base/jquery-ui.datepicker-ko.js"></script>
+    <script src="/include/script/flash.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/CarBaseGrade.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/CarBaseGradeDetail.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/CarBaseMaker.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/CarBaseModel.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/CarBaseModelDetail.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/CarBaseJsonInfo.js"></script>
+
+    <script type="text/javascript" src="/Scripts/Common/MainBanner.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/SideBanner.js"></script>
+    <script type="text/javascript" src="/Scripts/Common/BannerBaseJsonInfo.js"></script>
+
+
+
+    
+    
+
+</head>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+    <div id="modal-background"></div><div id="modal-content"><img style="width:100%;" src="/include/image/loading/loading.gif?v=2018"></div><div id="modal"></div>
+    
+        <!-- Car Compare -->
+        <div id="modal-comparebackground"></div>
+        <div id="modal-comparecontent">
+            <div class="area">
+                <div class="areaoverlay" style="position:relative;">
+                    <div id="ui_carcompare">
+                        <div class="uc_carcompare">
+                            <div class="uc_subject">
+                                <ul>
+                                    <li class="uc_floatleft">매물 비교</li>
+                                    <li class="uc_floatright btn_closeoverlay">닫기</li>
+                                </ul>
+                                <div class="uc_clearboth"></div>
+                            </div>
+                            <div class="uc_contents">
+								<table id="ui_carcomparedata">
+									<tbody><tr>
+										<th>선택차량</th>
+										<td style="text-align:center;">
+											<button type="button" class="btn esc"></button><div class="swiper-container"><div class="swiper-wrapper"><div class="swiper-slide"><img src="/include/image/car/car_noimage_big.jpg"></div></div></div><span class="car-model">2010쌍용 슈퍼렉스턴</span><span class="car-grade">RX6 4WD 브라운 에디션</span><button type="button" class="btn more">상세보기</button>
+										</td>
+										<td style="text-align:center;">
+											<button type="button" class="btn esc"></button>
+											<div class="swiper-container">
+												<div class="swiper-wrapper">
+													<div class="swiper-slide"><img src="/include/image/car/car_noimage_big.jpg"></div>
+												</div>
+											</div>
+											<span class="car-model">2010쌍용 슈퍼렉스턴</span>
+											<span class="car-grade">RX6 4WD 브라운 에디션</span>
+											<button type="button" class="btn more">상세보기</button>
+										</td>
+										<td style="text-align:center;">
+											<button type="button" class="btn esc"></button>
+											<div class="swiper-container">
+												<div class="swiper-wrapper">
+													<div class="swiper-slide"><img src="/include/image/car/car_noimage_big.jpg"></div>
+												</div>
+											</div>
+											<span class="car-model">2010쌍용 슈퍼렉스턴</span>
+											<span class="car-grade">RX6 4WD 브라운 에디션</span>
+											<button type="button" class="btn more">상세보기</button>
+										</td>
+										<td style="text-align:center;">
+											<button type="button" class="btn esc"></button>
+											<div class="swiper-container">
+												<div class="swiper-wrapper">
+													<div class="swiper-slide"><img src="/include/image/car/car_noimage_big.jpg"></div>
+												</div>
+											</div>
+											<span class="car-model">2010쌍용 슈퍼렉스턴</span>
+											<span class="car-grade">RX6 4WD 브라운 에디션</span>
+											<button type="button" class="btn more">상세보기</button>
+										</td>
+										<td style="text-align:center;">
+											<button type="button" class="btn esc"></button>
+											<div class="swiper-container">
+												<div class="swiper-wrapper">
+													<div class="swiper-slide"><img src="/include/image/car/car_noimage_big.jpg"></div>
+												</div>
+											</div>
+											<span class="car-model">2010쌍용 슈퍼렉스턴</span>
+											<span class="car-grade">RX6 4WD 브라운 에디션</span>
+											<button type="button" class="btn more">상세보기</button>
+										</td>
+									</tr>
+									<tr>
+										<th>사고여부</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>미션 / 연료</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>년식 /<br> 최초등록</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>주행거리</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="price">
+										<th>가격</th>
+										<td>100</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="option">
+										<th>옵션</th>
+										<td>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">네비게이션</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">스마트키</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">썬루프</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">HID램프</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">전후방감지기</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">후방카메라</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">열선시트</label>
+											<input type="checkbox" onclick="return false;" checked=""><label class=" checked">하이패스</label>
+											<div class="option-more">옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~옵션더보기내용~</div>
+										</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>차량번호</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>지역</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>판매자 정보</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									
+								</tbody></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Car Compare -->
+        <script type="text/javascript">
+            //$(".scrollbar").scroller();
+            resizeOverLay();
+            //$(".uc_scrollbarcompare > .scrollbar").scroller();
+            $(document).ready(function () {
+                // window resize
+                $(window).resize(function () {
+                    resizeOverLay();
+                });
+
+                $(".uc_scrollbarcompare > .scrollbar").each(function (index) {
+                    var vscroll = $(this);
+                    var vindex = index
+
+                    $(this).on("mousewheel", function () {
+                        clearTimeout($.data(this, 'timer'));
+                        $.data(this, 'timer', setTimeout(function () { 
+                            var vPosVal = vscroll.find(".scroller-content").scrollTop();
+                            
+                            $(".uc_scrollbarcompare > .scrollbar").each(function (index) {
+                                if (vindex != index) {
+                                    $(".uc_scrollbarcompare > .scrollbar").eq(index).find(".scroller-content").scrollTop(vPosVal);
+                                }
+                            });
+                        }));
+                    });
+				});
+            });
+            // 이벤트 기록 하여 클로즈 활성화
+            $(".btn_closeoverlay").click(function () {
+                $('body').css({ overflow: 'visible' });
+                reSetCompareCloseOverLayer();
+            });
+
+            // 레이어 컨텐츠 리사이즈
+            function resizeOverLay() {
+                var vDocH = $(window).height();
+                if (vDocH > 600)
+                    $(".uc_scrollbarcompare").css("height", vDocH - 460);
+                //$(".scrollbar").scroller("reset");
+            }
+
+        </script>
+    <div id="ui_overcarlog" style="top: 192px;">
+                <!-- Car Visit Log -->
+
+<div id="ui_carlog">
+    <div>
+        <ul>
+            <li>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+
+    </div>
+    <div class="uc_carvisit" style="display:none;">
+        <div class="uc_subject">최근 본 차량</div>
+        <div id="all_select_car_Log" class="uc_subject all-check">전체선택<div class="uc_btncheck all"><img onclick="javascript:allselect();" src="/include/image/btn/check_off.png"></div></div>
+        <div class="uc_contents">
+            <div class="uc_visititems">
+            </div>
+            <div class="comp-btn">
+                <button id="compare_cardetail" style="background-color:#aaa" disabled="disabled" type="button" class="btn" onclick="carmuiltiPopup();">상세보기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Car Visit Log -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        try {
+            resentcarlog.carloglist();
+            reSetCarCompareClick();
+        }
+        catch (e) {
+            console.log(e.toString());
+        }
+
+    });
+    function carmuiltiPopup() {
+        var vHeight = 540;
+        var vWidth = 1200;
+        var vLeft = $(window).width() / 2 - vWidth / 2;
+        var vTop = $(window).height() / 2 - vHeight / 2 - 153;
+        var checkCount = 0;
+        cookie.set('CHECKCARLOGS', "NO");
+        resentcarlog.carloglist();
+
+        $(".latest-car-list").find("li").hide();
+        $(".car-detail").find("li").hide();
+        $(".uc_visititem").each(function () {
+            var vSrc = $(this).find(".uc_btncheck > img").attr("src");
+
+            if (vSrc.indexOf("_on") > 0) {
+                checkCount += 1;
+                $("#cardetail_" + $(this).attr("data-no")).show();
+                $("#cardetail_list_li_" + $(this).attr("data-no")).show();
+            }
+        });
+
+        if (checkCount < 2) {
+            alert("상세보기 할 차량을 2대 이상 선택해주세요.");
+        }
+        else {
+
+            $('body').css('overflow', 'hidden');
+            if ($(".modal_carbackground").html() == undefined) {
+                $('<div class="modal_carbackground"></div><div class="modal_carcontent"></div>​').insertBefore('#modal');
+            }
+            var vmodal = $(".modal_carbackground");
+            var vmodalcontent = $(".modal_carcontent");
+
+
+            $(vmodal).click(function () {
+                $('body').css('overflow', 'visible');
+                $(".modal_carbackground_cardetail").hide();
+                vmodal.hide();
+                vmodalcontent.hide();
+            });
+            $(".latest-car-list").find("li").eq(0).click();
+            $('body').css('overflow', 'hidden');
+            $(".modal_carbackground_cardetail").show();
+            $(".modal_carbackground_cardetail").css({ "width": vWidth, "height": vHeight, "left": vLeft, "top": vTop });
+
+            vmodal.show();
+            vmodalcontent.show();
+        }
+
+    }
+
+</script>
+
+    </div>
+    <div id="warp">
+        <div id="header">
+            
+<input id="hdfUserGubunNo" name="hdfUserGubunNo" type="hidden" value="100">
+
+<link href="/Content/Css/partialheader.css" rel="stylesheet">
+<script src="/include/script/partialheader.js"></script> 
+
+<div class="top_banner" style="">
+    
+
+    <ul>
+        <li>
+            <p class="tit">[ 전체매물 ]</p>
+            <p class="num a1">181,020</p>
+        </li>
+        <li>
+            <p class="tit">[ 국산차 ]</p>
+            <p class="num a2">142,791</p>
+        </li>
+        <li>
+            <p class="tit">[ 수입차 ]</p>
+            <p class="num a3">38,229</p>
+        </li>
+        <li>
+
+        </li>
+        <li>
+            <p class="tit">[ 수출대상 ]</p>
+            <p class="num a5">40</p>
+        </li>
+        <li class="close_box">
+            <input id="top_banner_Close_ChkBox" type="checkbox"><lable>1일간 열지 않음</lable>
+            <span class="close_btn" id="top_banner">X</span>
+        </li>
+    </ul>
+
+
+</div>
+<div class="header">
+    <div class="gnb_box">
+        <div id="ui_logingnb">
+                <ul>
+                    <li><a href="/User/Login">로그인</a></li>
+                    <li><a id="shortcutUrl" href="https://carmanager.co.kr/Content/carmanager.url?v=1">바로가기 추가</a></li>
+                    <li><a href="javascript:bookmarksiteAdd();">즐겨찾기 추가</a></li>
+                </ul>
+        </div>
+        <div id="ui_gnb">
+        </div>
+        <h1 class="logo"><a href="/Home/Index"><img src="/include/image/common/logo.png" alt="로고"></a></h1>
+        <ul id="gnb" class="gnb_cont">
+            <li class="main_left_img" style="display: none;">
+                <!--<img src="~/include/image/common/menu_img.jpg" />-->
+            </li>
+            
+            
+            
+                <li class="">
+                    <a href="/Car/Data"><span>매물조회</span></a>
+                    <ul class="sub_menu" style="display: none;">
+                        <li class=""><a href="javascript:goPageCarData();">매물조회</a></li>
+                        <li class=""><a href="javascript:goPageCarArticleState();">매물현황조회</a></li>
+                        <li class=""><a href="javascript:goPageCarDataSale();">팔린매물조회</a></li>
+                        
+                    </ul>
+                </li>
+                            <li class="">
+                    <a href="/CarPrice/Market"><span>가격조회</span></a>
+                    <ul class="sub_menu" style="display: none;">
+                        <li class=""><a href="javascript:goPageCarPriceMarket();">시세조회</a></li>
+                        <li class=""><a href="javascript:goPageCarPriceAverage();">표준시세표</a></li>
+                        <li class=""><a href="javascript:goPageCarPriceNewCar();">신차가격표</a></li>
+                    </ul>
+                </li>
+                            <li class="">
+                    <a href="/Service/Shop"><span>확인서비스</span></a>
+                    <ul class="sub_menu" style="display: none;">
+                        <li class=""><a href="javascript:goPageServiceShop();">상사확인</a></li>
+                        <li class=""><a href="javascript:goPageServiceEmployee();">사원확인</a></li>
+                        <li class=""><a href="javascript:goPageServiceCarHistory();">차량이력조회(성능점검이력)</a></li>
+
+                        
+                    </ul>
+                </li>
+                                <li class="">
+                        <a href="/MyShop/Board"><span>상사매물관리</span></a>
+                        <ul class="sub_menu" style="display: none;">
+                            <li class=""><a href="javascript:goPageMyShopBoard();">보드판</a></li>
+                        </ul>
+                    </li>
+                            <li id="HeadLi_MyPage" class="">
+                    <a href="/MyPageCar"><span>마이페이지</span></a>
+                    <ul class="sub_menu" style="display: none;">
+                            <li class=""><a href="javascript:goPageMyPageCar();">내차관리</a></li>
+                        <li class=""><a href="javascript:goPageMyPage();">내정보관리</a></li>
+                        <li class=""><a href="javascript:goPageMyProduct();">내상품관리</a></li>
+                        <li class=""><a href="javascript:goPageProduct();">상품소개</a></li>
+                        <li id="HeadLi_MyPage_Inquire" class=""><a href="javascript:goPageInquiry();">1:1 문의</a></li>
+                    </ul>
+                </li>
+            <li class=" last">
+                <a href="javascript:goPageExCar();"><span>수출조회</span></a>
+                <ul class="sub_menu" style="display: none;">
+                    <li class=""><a href="javascript:goPageExCar();">수출차량조회</a></li>
+                    <li class=""><a href="javascript:goPageExCom();">수출딜러조회</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="bg_menu" style="display: none;"> </div>
+</div>      
+        </div>
+        <div id="container" style="min-height: 573px;">
+            <!-- ui_container area -->
+            <section class="content-wrapper main-content clear-fix">
+                <div id="ui_container">
+                    <div class="area">
+                        <div class="areabox">
+
+                            
+
+<script type="text/javascript"> 
+    $(document).ready(function () { 
+        var rememberid = $.cookie("rememberid");
+        if (rememberid) {
+            $("#cbxrememberid")[0].checked = true;
+            $("#userid").val(rememberid);
+        }
+    });
+
+    function GangwonCarData() {
+        alert("로그인후 사용가능합니다.");
+    }
+
+    function ChunannCarData() {
+        alert("로그인후 사용가능합니다.");
+    }
+
+
+</script> 
+
+<script src="/include/script/swiper.jquery.js"></script>
+<link href="/include/css/swiper.css" rel="stylesheet">
+<link href="/include/css/login.css?v=202410081054" rel="stylesheet">
+
+<div id="ui_container">
+    <div class="area">
+        <div class="areabox">
+            <div class="main-top">
+                <table>
+                    <tbody><tr>
+                        <td class="left">
+                            <!-- banner login -->
+                            <div id="mainBanner" class="main-banner">
+                                <div class="uc_floatleft">
+                                    <div class="swiper-container">
+                                        <ul class="swiper-wrapper" id="swiperUl"> 
+                                            <li class="swiper-slide" style="cursor:pointer;" data-free="Y">
+                                                <a href="http://cautomall.com/" target="_blank">
+                                                    <img src="https://images2.carmanager.co.kr/REP/NewImg/carmanager/211201/main_02.jpg" alt="대전 c오토몰 단지 오픈">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="swiper-pagination swiper-pagination-orange"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- banner login -->
+                        </td>
+                        <td style="vertical-align:top;">
+                            
+<!-- 메인로그인 -->
+    <div id="ui_loginbanner">
+        <div>
+            <ul>
+                <li><a href="javascript:openPopup('/popup/register_guide01.html',640,400, 'center');"><img src="/include/image/login/banner_loginright_01.jpg"></a></li>
+                <li><a href="/UserReg/Index"><img src="/include/image/login/dicar_product_banner.jpg"></a></li>
+                <li><img src="https://images2.carmanager.co.kr/REP/NewImg/carmanager/211224/contract_down.jpg" onclick="fileSave('https://images2.carmanager.co.kr/REP/NewImg/carmanager/230616/%EC%B9%B4%EB%A7%A4%EB%8B%88%EC%A0%80%EC%9D%B4%EC%9A%A9%EA%B3%84%EC%95%BD%EC%84%9C_20230616.pdf','카매니저_이용_계약서(2023.06.16).pdf')" style="cursor:pointer;"></li>
+            </ul>
+        </div>
+    </div>
+<div>
+<form action="/User/Login" method="post">            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#userid").keypress(function (e) {
+                        if (e.keyCode == 13) {
+                            $("#userpwd").focus();
+                        }
+                    });
+                    $("#userpwd").keypress(function (e) {
+                        if (e.keyCode == 13) {
+                            commitLogin();
+                        }
+                    });
+                });
+
+                function fileSave(url, fileName) {
+                    var browserName = undefined;
+                    var userAgent = navigator.userAgent;
+
+                    switch (true) {
+                        case /Trident|MSIE/.test(userAgent):
+                            browserName = 'ie';
+                            break;
+
+                        case /Edge/.test(userAgent):
+                            browserName = 'edge';
+                            break;
+
+                        case /Chrome/.test(userAgent):
+                            browserName = 'chrome';
+                            break;
+
+                        case /Safari/.test(userAgent):
+                            browserName = 'safari';
+                            break;
+
+                        case /Firefox/.test(userAgent):
+                            browserName = 'firefox';
+                            break;
+
+                        case /Opera/.test(userAgent):
+                            browserName = 'opera';
+                            break;
+
+                        default:
+                            browserName = 'unknown';
+                    }
+
+
+                    //ie 브라우저 및 EDGE 브라우저
+                    if (browserName == 'ie' || browserName == 'edge') {
+
+                        //ie11
+                        var _window = window.open(url, "_blank");
+                        _window.document.close();
+                        _window.document.execCommand('SaveAs', true, fileName || url)
+                        _window.close();
+                    } else {
+
+                        //chrome
+                        var filename = fileName;
+                        var xhr = new XMLHttpRequest();
+                        xhr.responseType = 'blob';
+                        xhr.onload = function () {
+                            var a = document.createElement('a');
+                            a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+                            a.download = filename; // Set the file name.
+                            a.style.display = 'none';
+                            document.body.appendChild(a);
+                            a.click();
+                            delete a;
+                        };
+                        xhr.open('GET', url);
+                        xhr.send();
+                    }
+                }
+            </script>
+            <div class="login-wrap">
+                <div>
+                    <div class="login-form">
+                        <h4 class="uc_font_eng">카매니저 로그인</h4>
+                    </div>
+                    <div class="uc_clearboth"></div>
+                    <input id="sbxgubun" name="sbxgubun" type="hidden" value="1">
+                    <input id="returnurl" name="returnurl" type="hidden" value="/Car/DataSale">
+                </div>
+                <div class="uc_clearboth"></div>
+            </div>
+            <div>
+                <table id="ui_loginarea">
+                    <tbody><tr>
+                        <td>
+                            <ul class="login-input">
+                                <li><input type="text" id="userid" name="userid" class="uc_inputbox" maxlength="50" placeholder="아이디" onfocus="reSetUserNameInShop();"></li>
+                                <li><input type="password" id="userpwd" name="userpwd" class="uc_inputbox" maxlength="20" placeholder="비밀번호"></li>
+                            </ul>
+                        </td>
+                        <td class="login-btn">
+                            <button type="button" class="btn login" onclick="commitLogin();">로그인</button>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="uc_regarea" id="ui_loginshop">
+                <ul class="login-certify-list">
+                    <li class="uc_floatleft">
+                        <input type="checkbox" id="cbxrememberid" name="cbxrememberid"><label class="save-id" for="cbxrememberid">아이디저장</label>
+                        <a href="/UserReg/Dealer" class="btn_join">회원가입</a>
+                    </li>
+                    <li class="uc_floatright">
+                        <a href="/UserSearch/SearchID">아이디 찾기</a>
+                        <span>|</span>
+                        <a href="/UserSearch/SearchPW">비밀번호 찾기</a>
+                    </li>
+                </ul>
+                <div class="uc_clearboth"></div>
+            </div>
+</form></div>
+                                    <!-- 공지사항 -->
+        <div id="ui_loginnotice">
+            <ul>
+                        <li>[공지사항] <a href="javascript:goPopupNoBoardView(54)">★[사용팁] 모바일 캐시 저장공간 삭제방법</a></li>
+                        <li><a href="javascript:goPopupNoBoardView(51)">★사진촬영장  연락처 안내★</a></li>
+            </ul>
+        </div> 
+        <div style="margin-top:11px;">
+            <a href="/User/LimitLogin"><img src="https://images2.carmanager.co.kr/REP/NewImg/carmanager/images/index/changecompany_banner.jpg"></a>
+        </div>
+        <!-- 공지사항 -->
+
+
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div>
+                <table class="main-ad">
+                    <tbody><tr>
+                        <td><img src="/temp/main/mainbanner_shop00.gif"></td>
+                        <td><img src="/temp/main/mainbanner_shop00.gif"></td>
+                        <td><img src="/temp/main/mainbanner_shop00.gif"></td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+        <div class="bottom-banner" style="cursor:pointer;" onclick="AppOpenPopUp();">
+            <img src="https://images2.carmanager.co.kr/REP/NewImg/carmanager/211021/home_banner.jpg" alt="">
+            
+        </div>
+    </div>
+
+</div> 
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ui_container area -->
+        </div>
+        
+<!-- 2021.08.13 푸터 수정 (로고-->
+<div id="footer">
+    <div class="area">
+        <div class="right_info">
+            <ul class="footerinfo">
+                <li class="clLeft">㈜ 아톤모빌리티</li>
+                <li>사업자등록번호:140-81-22581</li>
+                <li>통신판매업신고번호:제2021-서울서초-1652호</li>
+                <li>서울특별시 서초구 강남대로 273 송남빌딩 10층 </li>
+                <li class="clLeft">대표자 :강 철</li>
+                <li>Tel : 02-3474-3060</li>
+                <li>Fax : 02-3474-3069</li>
+                <li>고객문의 :  cs@atonmobility.com</li>
+                <li class="copyright">Copyright ⓒ 2021 ATON mobility Inc. All rights reserved.</li>
+            </ul>
+            <ul class="wrap_link">
+                <li><a href="javascript:goPopupContect()">제휴제안</a></li>
+                <li><a href="javascript:goPopupUseTerms()">이용약관</a></li>
+                <li><a href="javascript:goPopupPersonPolicy()" style="font-weight:bold;">개인정보 처리방침</a></li>
+                <li><a href="javascript:goPopupSiteMap()">사이트맵 </a></li>
+
+                <li><a target="_blank" href="/RemoteSupport.html">원격지원요청 </a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //2021.08.13 푸터 수정 -->
+    </div>
+    <div id="nav">
+            <div class="area">
+        <div class="areabox">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    // 위의 내용은 Cookie 에서 사용한다.
+    // 만약 추가 할경우 Cookie 에 등록 한다.
+    $(document).ready(function () {
+        $('#ui_rememberurl .uc_btnnavi').click(function () {
+            var vHtml = $(this).html().trim();
+            if (vHtml == "&lt;") {
+                // 이전 값을 가지고 옵니다.
+                vDocIndex <= 1 ? vDocIndex = 0 : vDocIndex--;
+            } else {
+                var vLength = $("#ui_rememberurl .uc_rememberurldata > li").length;
+                if (vDocIndex < vLength)
+                    vDocIndex++;
+            }
+            remakeNav();
+        });
+    });
+    </script>
+    </div>
+
+    <script>
+        $(function () {
+            try {
+                jdetects.create(function (status) {
+                    if (status == 'on' && ip() != '183.98.44.210' && ip() != '183.98.44.111') document.location.replace("/Error");
+                });
+            } catch (e) {
+
+            }
+        });
+
+        $(document).ready(function () {
+            try {
+                //if (ip() != '183.98.44.210' && ip() != '183.98.44.111') {
+                //    $(document).bind('keydown', function (e) {
+                //        if (e.keyCode == 123 /* F12 */) {
+                //            e.preventDefault();
+                //            e.returnValue = false;
+                //        }
+                //    });
+                //}
+            }
+            catch (e) {
+                console.log(e.toString());
+            }
+        });
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-98500669-1', 'auto');
+        ga('send', 'pageview');
+
+    </script><iframe allow="join-ad-interest-group" data-tagging-id="G-ZG0WEW99GG" data-load-time="1736161063798" height="0" width="0" src="https://td.doubleclick.net/td/ga/rul?tid=G-ZG0WEW99GG&amp;gacid=1006470464.1736161063&amp;gtm=45je4cc1v9125698714za200&amp;dma=0&amp;gcd=13l3l3l3l2l1&amp;npa=0&amp;pscdl=noapi&amp;aip=1&amp;fledge=1&amp;frm=0&amp;tag_exp=101925629~102067555~102067808~102081485~102198178&amp;z=588610947" style="display: none; visibility: hidden;"></iframe>
+
+
+</body></html>
