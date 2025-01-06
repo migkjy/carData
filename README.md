@@ -8,6 +8,19 @@
 - 수집된 데이터를 CSV 파일로 저장
 - 페이지네이션 자동 처리 (한 페이지당 100개 데이터)
 
+## 환경변수 설정
+
+1. `.env.example` 파일을 `.env`로 복사합니다:
+```bash
+cp .env.example .env
+```
+
+2. `.env` 파일을 열어 실제 값으로 수정합니다:
+```
+CARMANAGER_USERNAME=your_username
+CARMANAGER_PASSWORD=your_password
+```
+
 ## 설치 방법
 
 ```bash

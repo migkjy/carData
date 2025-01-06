@@ -1,5 +1,15 @@
+require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+
+// 환경변수 확인
+const USERNAME = process.env.CARMANAGER_USERNAME;
+const PASSWORD = process.env.CARMANAGER_PASSWORD;
+
+if (!USERNAME || !PASSWORD) {
+  console.error('환경변수가 설정되지 않았습니다. .env 파일을 확인해주세요.');
+  process.exit(1);
+}
 
 // 메인 함수
 async function run() {
