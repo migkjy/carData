@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+config.json
+
+# Generated files
+*.csv
+*.png
+*.html
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db

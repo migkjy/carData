@@ -1,6 +1,9 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
+// 설정 파일 로드
+const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+
 (async () => {
   const browser = await puppeteer.launch({
     headless: false,
@@ -47,8 +50,23 @@ const fs = require('fs');
     // 페이지의 스크린샷 저장
     await page.screenshot({path: 'login-page.png', fullPage: true});
     console.log('페이지 스크린샷이 login-page.png에 저장되었습니다.');
-    await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
+    // 로그인 수행
+    console.log('로그인 시도 중...');
+    await page.type('#UserId', config.login.username);
+    await page.type('#Password', config.login.password);
+    
+    // 로그인 버튼 클릭
+    await Promise.all([
+      page.click('.btn-login'),
+      page.waitForNavigation({ waitUntil: 'networkidle0' })
+    ]);
+
+    // 로그인 성공 확인
+    const currentUrl = page.url();
+    if (currentUrl.includes('Login')) {
+      throw new Error('로그인 실패: 아이디나 비밀번호를 확인해주세요.');
+    }
     console.log('로그인 완료');
 
     // 데이터를 저장할 배열
