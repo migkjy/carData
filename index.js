@@ -10,15 +10,8 @@ const waitForTimeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 (async () => {
   const browser = await puppeteer.launch({
     headless: false,
-    slowMo: 50,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--disable-gpu'
-    ],
-    defaultViewport: {width: 1024, height: 768}
+    defaultViewport: {width: 1024, height: 768},
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--display=:1']
   });
 
   const page = await browser.newPage();
@@ -26,37 +19,15 @@ const waitForTimeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   try {
     // 로그인 페이지 접속
     console.log('로그인 페이지 접속 중...');
-    try {
-      await page.goto('https://www.carmanager.co.kr/User/Login/?returnurl=%2fCar%2fDataSale', { 
-        waitUntil: 'networkidle0',
-        timeout: 60000
-      });
-      console.log('페이지 로드 완료');
-    } catch (error) {
-      console.log('페이지 로드 중 에러:', error.message);
-      // 스크린샷 저장
-      await page.screenshot({path: 'error-page.png'});
-      throw error;
-    }
-
-    // 페이지의 HTML 구조 확인
-    console.log('로그인 페이지 구조 분석 중...');
-    
-    // 잠시 대기
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    
-    // 페이지의 HTML 저장
-    const html = await page.content();
-    fs.writeFileSync('page.html', html);
-    console.log('페이지 HTML이 page.html에 저장되었습니다.');
-    
-    // 페이지의 스크린샷 저장
-    await page.screenshot({path: 'login-page.png', fullPage: true});
-    console.log('페이지 스크린샷이 login-page.png에 저장되었습니다.');
+    await page.goto('https://www.carmanager.co.kr/User/Login', { 
+      waitUntil: 'networkidle0',
+      timeout: 60000
+    });
+    console.log('로그인 페이지 로드 완료');
 
     // 로그인 수행
     console.log('로그인 시도 중...');
-    await page.waitForSelector('input[name="userid"]');
+    await page.waitForSelector('input[name="userid"]', { visible: true });
     await page.type('input[name="userid"]', config.login.username);
     await page.type('input[name="userpwd"]', config.login.password);
     
@@ -75,123 +46,120 @@ const waitForTimeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     // 데이터를 저장할 배열
     let allData = [];
+    let pageNum = 1;
+    let hasNextPage = true;
 
-    // 100개씩 보기로 변경된 URL로 이동
+    // 헤더 추가
+    const headers = [
+      '날짜', '경과일', '차량', '변속기', '연식', '등록일', 
+      '연료', '주행거리', '색상', '가격', '옵션', '지역'
+    ];
+    allData.push(headers);
+
+    // 데이터 페이지로 이동
     console.log('데이터 페이지로 이동 중...');
-    await page.goto('https://www.carmanager.co.kr/Car/DataSale?pageSize=100', {
+    await page.goto('https://www.carmanager.co.kr/Car/DataSale', {
       waitUntil: 'networkidle0'
     });
 
-    // 잠시 대기하여 페이지 로딩 확인
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // 잠시 대기
+    await waitForTimeout(2000);
 
-    // 데이터 페이지의 HTML 저장
-    const dataPageHtml = await page.content();
-    fs.writeFileSync('data-page.html', dataPageHtml);
-    console.log('데이터 페이지 HTML이 data-page.html에 저장되었습니다.');
-    
-    // 데이터 페이지 스크린샷 저장
-    await page.screenshot({path: 'data-page.png', fullPage: true});
-    console.log('데이터 페이지 스크린샷이 data-page.png에 저장되었습니다.');
+    // 페이지 HTML 저장하여 구조 확인
+    const html = await page.content();
+    fs.writeFileSync('data-page.html', html);
+    console.log('페이지 HTML 저장됨');
 
-    // 총 페이지 수 확인
-    const totalPages = await page.evaluate(() => {
-      // uc_cpage 클래스를 가진 div 내의 모든 td 엘리먼트를 찾습니다
-      const pageTds = document.querySelectorAll('.uc_cpage td');
-      if (!pageTds.length) return 1;
+    // 100개씩 보기 설정
+    console.log('100개씩 보기로 설정 변경 중...');
+    try {
+      // URL에 pageSize 파라미터 추가하여 직접 이동
+      const currentUrl = page.url();
+      const newUrl = currentUrl.includes('?') 
+        ? `${currentUrl}&pageSize=100` 
+        : `${currentUrl}?pageSize=100`;
       
-      // 모든 페이지 번호를 추출하여 가장 큰 숫자를 찾습니다
-      const pageNumbers = Array.from(pageTds)
-        .map(td => parseInt(td.textContent.trim(), 10))
-        .filter(num => !isNaN(num));
-      
-      return Math.max(...pageNumbers, 1);
-    });
+      await page.goto(newUrl, { waitUntil: 'networkidle0' });
+      console.log('100개씩 보기 URL로 이동 완료');
 
-    console.log('발견된 총 페이지 수:', totalPages);
+      // 설정 변경 후 데이터 로딩 대기
+      await waitForTimeout(3000);
 
-    console.log(`총 페이지 수: ${totalPages}`);
-
-    // 각 페이지 순회
-    for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
-      console.log(`페이지 ${currentPage}/${totalPages} 처리 중...`);
-
-      // 테이블 데이터 추출
-      const pageData = await page.evaluate(() => {
+      // 페이지 로딩 확인
+      const rowCount = await page.evaluate(() => {
         const rows = document.querySelectorAll('table.uc_data tbody tr');
-        return Array.from(rows).map(row => {
-          const cells = row.querySelectorAll('td');
-          const rawData = Array.from(cells).map(cell => cell.textContent.trim());
-          
-          // 연식과 등록월 분리
-          const yearMatch = rawData[4]?.match(/\[(\d{4})\]\s*,?\s*(\d{4})\.(\d{2})?/);
-          const year = yearMatch ? yearMatch[1] : '';
-          const regDate = yearMatch && yearMatch[2] && yearMatch[3] ? `${yearMatch[2]}.${yearMatch[3]}` : '';
-          
-          // 주행거리에서 숫자만 추출
-          const kmMatch = rawData[6]?.match(/[\d,]+/);
-          const km = kmMatch ? parseInt(kmMatch[0].replace(/,/g, '')) : '';
-          
-          // 가격에서 숫자만 추출
-          const priceMatch = rawData[8]?.match(/[\d,]+/);
-          const price = priceMatch ? parseInt(priceMatch[0].replace(/,/g, '')) : '';
-          
-          // 데이터 포맷팅
-          return [
-            rawData[0] || '',         // 날짜
-            rawData[1]?.replace(/\s+일$/, '') || '',  // 경과일수 (일 제거)
-            rawData[2] || '',         // 차량
-            rawData[3] || '',         // 변속기
-            year,                     // 연식
-            regDate,                  // 등록일
-            rawData[5] || '',         // 연료
-            km,                       // 주행거리
-            rawData[7] || '',         // 색상
-            price,                    // 가격
-            rawData[9] || '',         // 옵션
-            // 추가 데이터 (사고내역, 추가장착, 옵션내역 등)는 그대로 유지
-            ...(rawData.slice(10) || [])
-          ];
+        return rows.length;
+      });
+      console.log(`현재 페이지에 ${rowCount}개의 행이 로드됨`);
+
+    } catch (error) {
+      console.log('100개씩 보기 설정 실패:', error.message);
+    }
+
+    while (hasNextPage) {
+      console.log(`페이지 ${pageNum} 처리 중...`);
+
+      // 데이터 추출
+      const pageData = await page.evaluate(() => {
+        const rows = Array.from(document.querySelectorAll('table.uc_data tbody tr'));
+        return rows.map(row => {
+          const cells = Array.from(row.querySelectorAll('td'));
+          return cells.map(cell => cell.textContent.trim());
         });
       });
 
+      if (pageData.length === 0) {
+        console.log('더 이상 데이터가 없습니다.');
+        break;
+      }
+
       allData = allData.concat(pageData);
-      console.log(`페이지 ${currentPage}에서 ${pageData.length}개의 데이터 추출`);
+      console.log(`${pageData.length}개의 데이터 추출 완료`);
 
-      // 다음 페이지로 이동 (마지막 페이지가 아닌 경우)
-      if (currentPage < totalPages) {
-        console.log(`다음 페이지(${currentPage + 1})로 이동 시도...`);
+      // 다음 페이지 존재 여부 확인
+      hasNextPage = await page.evaluate(() => {
+        const pageTds = document.querySelectorAll('.uc_cpage td');
+        const currentPage = document.querySelector('.uc_cpage td.on');
+        if (!currentPage) return false;
         
-        try {
-          // 페이지 번호 클릭
-          await page.evaluate((nextPage) => {
-            const pageTds = document.querySelectorAll('.uc_cpage td');
-            const targetTd = Array.from(pageTds).find(td => td.textContent.trim() === nextPage.toString());
-            if (targetTd) {
-              targetTd.click();
-            } else {
-              throw new Error(`페이지 ${nextPage} 버튼을 찾을 수 없습니다.`);
-            }
-          }, currentPage + 1);
+        const currentPageNum = parseInt(currentPage.textContent.trim());
+        const nextPageTd = Array.from(pageTds).find(td => 
+          parseInt(td.textContent.trim()) === currentPageNum + 1
+        );
+        
+        return !!nextPageTd;
+      });
 
-          // 페이지 로딩 대기
-          await page.waitForNavigation({ waitUntil: 'networkidle0' });
-          await waitForTimeout(2000);
+      if (hasNextPage) {
+        console.log('다음 페이지로 이동...');
+        
+        // 다음 페이지 번호 클릭
+        await page.evaluate(() => {
+          const pageTds = document.querySelectorAll('.uc_cpage td');
+          const currentPage = document.querySelector('.uc_cpage td.on');
+          const currentPageNum = parseInt(currentPage.textContent.trim());
+          
+          const nextPageTd = Array.from(pageTds).find(td => 
+            parseInt(td.textContent.trim()) === currentPageNum + 1
+          );
+          if (nextPageTd) nextPageTd.click();
+        });
 
-          // 데이터 로딩 확인
-          const isDataLoaded = await page.evaluate(() => {
-            const rows = document.querySelectorAll('table.uc_data tbody tr');
-            return rows.length > 0;
-          });
+        // 페이지 로딩 대기
+        await waitForTimeout(2000);
 
-          if (!isDataLoaded) {
-            console.log(`페이지 ${currentPage + 1} 데이터 로딩 실패, 재시도...`);
-            currentPage--; // 현재 페이지 다시 시도
-          }
-        } catch (error) {
-          console.log(`페이지 ${currentPage + 1} 이동 중 에러 발생:`, error.message);
-          console.log('재시도...');
-          currentPage--; // 현재 페이지 다시 시도
+        // 데이터 로딩 확인
+        const isLoaded = await page.evaluate(() => {
+          const rows = document.querySelectorAll('table.uc_data tbody tr');
+          return rows.length > 0;
+        });
+
+        if (isLoaded) {
+          pageNum++;
+          console.log(`페이지 ${pageNum}로 이동 완료`);
+        } else {
+          console.log('페이지 로딩 실패, 재시도...');
+          hasNextPage = true;  // 다시 시도
         }
       }
     }
