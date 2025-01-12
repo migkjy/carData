@@ -15,4 +15,4 @@ config.json
 
 # OS specific files
 .DS_Store
-Thumbs.db
+Thumbs.dbnode_modules/
